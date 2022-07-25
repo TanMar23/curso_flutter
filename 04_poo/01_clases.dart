@@ -15,24 +15,20 @@ retirar(double cantidad): se retira una cantidad a la cuenta, si restando la can
 class Cuenta {
   // Constructor
   Cuenta({
-    required this.titular,
     this.cantidad = 0.0,
   });
 
   // Propiedades
-  String titular;
+  String _titular = 'Desconocido';
   double? cantidad;
 
   // getters y setters
-  // double? get cantidad(double? cantidad) {
-  //   return _cantidad;
-  // }
   String get titularInfo {
-    return 'La cuenta pertenece a: $titular y tiene un balance de: $cantidad';
+    return 'La cuenta pertenece a: $_titular y tiene un balance de: $cantidad';
   }
 
-  void set newTitular(String titular) {
-    this.titular = titular;
+  void set titular(String titular) {
+    _titular = titular;
   }
 
   // Métodos
@@ -41,12 +37,12 @@ class Cuenta {
       return;
     }
 
-    this.cantidad! + cantidad;
+    this.cantidad = (this.cantidad ?? 0) + cantidad;
   }
 
   void retirar(double cantidad) {
-    this.cantidad! - cantidad;
-    if ((this.cantidad! - cantidad) < 0) {
+    this.cantidad = (this.cantidad ?? 0) - cantidad;
+    if ((this.cantidad ?? 0) < 0) {
       this.cantidad = 0;
     }
   }
